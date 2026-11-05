@@ -1053,7 +1053,7 @@ $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
 document.documentElement.classList.add('locked'); if (lenis) lenis.stop();
 const slats = $('#slats'); const NS = innerWidth < 700 ? 8 : 16;
 for (let i = 0; i < NS; i++) { const s = el('div', 'slat'); s.style.backgroundPosition = `${-i * innerWidth / NS}px 0`; slats.appendChild(s); }
-gsap.set('.slat', { rotateY: -90 });
+gsap.set('.slat', { rotateY: -90, autoAlpha: 0 });
 const strokes = $$('#ld-logo .s');
 strokes.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
 gsap.to(strokes, { strokeDashoffset: 0, duration: reduce ? .01 : 1.5, stagger: reduce ? 0 : .1, ease: 'power2.inOut', onComplete: () => $('#ld-logo').classList.add('lit') });
@@ -1090,6 +1090,7 @@ function finishLoader() {
   if (reduce) { tl.to('#loader', { opacity: 0, duration: .3 }); tl.add(heroIn, 0); return; }
   tl.to('.ld-center', { scale: 1.15, opacity: 0, filter: 'blur(8px)', duration: .6, ease: 'power2.in' }, .25)
     .to('.ld-hud, .ld-bar', { opacity: 0, duration: .3 }, .25)
+    .set('.slat', { autoAlpha: 1 }, .55)
     .to('.slat', { rotateY: 0, duration: .7, ease: 'power3.out', stagger: { each: .035, from: 'start' } }, .55)
     .add(() => $('#loader').classList.add('clear'))
     .to('.slat', { rotateY: 90, duration: .75, ease: 'power3.inOut', stagger: { each: .035, from: 'center' } }, '+=.45')
@@ -1454,10 +1455,12 @@ $$('.copy').forEach(b => b.addEventListener('click', async () => {
 /* ---------------- GLOBAL PROGRESS / EXIT LABEL (created last, after every pin) ---------------- */
 const odo = $('#odo'), odoF = $('#odo-fill'), hdrExit = $('#hdr-exit'), odoT = $('#odo-track');
 ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => { odo.textContent = String(Math.round(s.progress * 100)).padStart(3, '0') + '%'; odoF.style.height = s.progress * 100 + '%'; } });
-$$('[data-exit]').forEach(s => ScrollTrigger.create({ trigger: s, start: 'top 50%', end: 'bottom 50%',
-  onToggle: st => { if (st.isActive) hdrExit.textContent = s.dataset.exit; } }));
-ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom 50%', onEnterBack: () => hdrExit.textContent = 'EXIT 00 · START' });
-ScrollTrigger.create({ trigger: '#about', start: 'top 50%', end: '#route bottom 50%', onToggle: st => { if (st.isActive) hdrExit.textContent = 'ON THE ROAD · ABOUT'; } });
+/* header label follows the scroll position: the last section whose top has passed mid-screen */
+const exitMarks = [['ON THE ROAD · ABOUT', ScrollTrigger.create({ trigger: '#about', start: 'top 50%' })],
+  ...$$('[data-exit]').map(s => [s.dataset.exit, ScrollTrigger.create({ trigger: s, start: 'top 50%' })])];
+const setExit = () => { const y = scrollY; let t = 'EXIT 00 · START'; exitMarks.forEach(([lab, st]) => { if (y >= st.start) t = lab; }); if (hdrExit.textContent !== t) hdrExit.textContent = t; };
+ScrollTrigger.create({ start: 0, end: 'max', onUpdate: setExit });
+ScrollTrigger.addEventListener('refresh', setExit);
 /* clickable route line with chapter stops */
 const buildTicks = () => {
   $$('.odo-tick', odoT).forEach(t => t.remove());
