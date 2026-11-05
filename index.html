@@ -250,7 +250,7 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 #road.road-m .bb.lit{--lit:1}
 #road.road-m .bb-lamps i::after{transition:opacity .7s}
 #road.road-m .site{width:58vw}
-#road.road-m .swipe-hint{display:flex;position:absolute;top:22px;right:16px;z-index:5;align-items:center;gap:8px;font-family:var(--f-led);font-size:11px;letter-spacing:.16em;color:var(--ink);background:var(--sodium);padding:7px 12px;border-radius:30px;transition:opacity .5s}
+#road.road-m .swipe-hint{display:flex;position:absolute;bottom:calc(15vh + 14px);left:50%;translate:-50% 0;white-space:nowrap;z-index:5;align-items:center;gap:8px;font-family:var(--f-led);font-size:11px;letter-spacing:.16em;color:var(--ink);background:var(--sodium);padding:7px 12px;border-radius:30px;transition:opacity .5s}
 #road.road-m .swipe-hint i{font-style:normal;animation:nudge 1.1s ease-in-out infinite}
 #road.road-m .swipe-hint.gone{opacity:0;pointer-events:none}
 @keyframes nudge{50%{transform:translateX(6px)}}
@@ -792,7 +792,7 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
   <div class="end-head">
     <p class="eyebrow">What I do</p>
     <h2 class="end-title"><span>Graphic.</span><span>Motion.</span><span class="ai-word">AI.</span></h2>
-    <p class="end-lead">Billboards are one part of my work. My job is to design brands from the first idea to every screen they live on, and I use AI to take them further than a camera or a budget could.</p>
+    <p class="end-lead">I design brands from the first idea to every screen they live on: identity, campaigns, motion and AI films. AI lets me take an idea further than a camera or a budget could.</p>
   </div>
   <div class="disc">
     <article class="d-card">
@@ -1074,15 +1074,17 @@ if (hv.readyState >= 2) heroDone();
 const t0 = performance.now(); const MIN = reduce ? 300 : 3400;
 let shown = 0; const cnt = $('#ld-count'), bar = $('#ld-bar');
 let finished = false;
-(function loop() {
-  const time = Math.min(1, (performance.now() - t0) / MIN);
-  const target = Math.min(loaded / total, time) * 100;
-  shown += (target - shown) * .09 + (shown < target ? .2 : 0);
-  if (shown > target) shown = target;
+/* time-based, so it also finishes on slow or throttled devices; hard stop after 9 s */
+let lastT = performance.now();
+const ldTimer = setInterval(() => {
+  const now = performance.now(), dt = Math.min(250, now - lastT); lastT = now;
+  const time = Math.min(1, (now - t0) / MIN);
+  const ready = now - t0 > 9000 ? 1 : loaded / total;
+  const target = Math.min(ready, time) * 100;
+  shown = Math.min(target, shown + (target - shown) * Math.min(1, dt / 160) + dt * .03);
   cnt.textContent = String(Math.floor(shown)).padStart(3, '0'); bar.style.width = shown + '%';
-  if (shown >= 99.6 && !finished) { finished = true; cnt.textContent = '100'; bar.style.width = '100%'; finishLoader(); return; }
-  requestAnimationFrame(loop);
-})();
+  if (shown >= 99.6 && !finished) { finished = true; clearInterval(ldTimer); cnt.textContent = '100'; bar.style.width = '100%'; finishLoader(); }
+}, 40);
 
 function finishLoader() {
   clearInterval(bTimer); ldBrand.textContent = 'ADNAN ANWAR';
