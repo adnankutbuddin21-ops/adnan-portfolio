@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Adnan Anwar Portfolio</title>
-<meta name="description" content="Adnan Anwar · Graphic & Motion Designer based in Kuwait. Billboards, airports, malls, feeds, motion and AI.">
+<meta name="description" content="Adnan Anwar · Graphic, Motion & AI Designer based in Kuwait. Brand identity, campaigns, motion graphics, AI films and 3D.">
 <meta name="theme-color" content="#0a090b">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Adnan Anwar · Graphic & Motion Designer">
-<meta property="og:description" content="Billboards, airport pillars, mall branding, watch key visuals, motion, AI and 3D. Kuwait / GCC.">
+<meta property="og:title" content="Adnan Anwar · Graphic, Motion & AI Designer">
+<meta property="og:description" content="Brand identity, campaigns, motion graphics, AI films and 3D for fashion and lifestyle brands across the GCC.">
 <meta property="og:image" content="og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -235,6 +235,25 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .site{flex:0 0 auto;align-self:center;width:clamp(170px,17vw,260px);background:var(--paper);padding:8px 8px 34px;rotate:var(--r,3deg);box-shadow:0 20px 50px rgba(0,0,0,.6);position:relative}
 .site img{aspect-ratio:4/5;object-fit:cover;width:100%}
 .site span{position:absolute;left:10px;bottom:9px;font-family:var(--f-led);font-size:11px;color:#222;letter-spacing:.1em}
+.swipe-hint{display:none}
+@media (hover:none){.hover-only{display:none}}
+#road.road-m{height:auto;padding:0 0 15vh}
+#road.road-m .skyline{bottom:15vh;height:26vh}
+#road.road-m .road-surface{height:15vh}
+#road.road-m #road-track{position:relative;bottom:auto;height:auto;min-height:62vh;padding:70px 10vw 26px;gap:28px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;transform:none!important}
+#road.road-m #road-track::-webkit-scrollbar{display:none}
+#road.road-m #road-track > *{scroll-snap-align:center}
+#road.road-m .road-title{width:78vw;padding-bottom:0}
+#road.road-m .bb-panel{width:80vw}
+#road.road-m .bb-panel img{transition:filter .7s}
+#road.road-m .bb.lit .bb-panel img{filter:none}
+#road.road-m .bb.lit{--lit:1}
+#road.road-m .bb-lamps i::after{transition:opacity .7s}
+#road.road-m .site{width:58vw}
+#road.road-m .swipe-hint{display:flex;position:absolute;top:22px;right:16px;z-index:5;align-items:center;gap:8px;font-family:var(--f-led);font-size:11px;letter-spacing:.16em;color:var(--ink);background:var(--sodium);padding:7px 12px;border-radius:30px;transition:opacity .5s}
+#road.road-m .swipe-hint i{font-style:normal;animation:nudge 1.1s ease-in-out infinite}
+#road.road-m .swipe-hint.gone{opacity:0;pointer-events:none}
+@keyframes nudge{50%{transform:translateX(6px)}}
 
 .dubai{padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(24px,4vw,60px);align-items:center}
 .dubai figure{overflow:hidden;border-radius:4px;background:#fff}
@@ -251,6 +270,7 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .night-grid img:nth-child(1),.night-grid img:nth-child(2){grid-column:span 2;aspect-ratio:4/3}
 .spot{position:absolute;inset:0 var(--gut) clamp(60px,10vh,120px);pointer-events:none;background:radial-gradient(circle var(--sr,230px) at var(--mx,50%) var(--my,40%),rgba(6,6,8,0) 0%,rgba(6,6,8,.35) 45%,rgba(6,6,8,.93) 100%);border-radius:3px}
 @media (max-width:720px){.night-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (hover:none){.spot{display:none}}
 
 .feat{padding:0 var(--gut);display:grid;gap:14px}
 .feat-tile{position:relative;aspect-ratio:16/9;max-height:86vh;width:100%;overflow:hidden;border-radius:4px;background:#000}
@@ -262,7 +282,11 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .feat-cap .led{font-size:13px;letter-spacing:.16em}
 .ledwall{padding:0 var(--gut) clamp(70px,10vh,140px);columns:3 280px;column-gap:10px}
 .screen{position:relative;overflow:hidden;border-radius:3px;background:#000;border:1px solid #222;break-inside:avoid;margin-bottom:10px;aspect-ratio:var(--ar,16/9)}
-.screen video{width:100%;height:100%;object-fit:contain}
+.screen video{width:100%;height:100%;object-fit:contain;transition:filter .35s}
+.screen::after{transition:opacity .35s}
+.screen:hover::after{opacity:0}
+.screen:hover span{opacity:0;transition:opacity .35s}
+@media (hover:none){.screen::after{display:none}}
 .screen.new{border-color:rgba(255,43,58,.55)}
 .screen::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 56%) 0 0/4px 4px, linear-gradient(transparent 50%,rgba(0,0,0,.2) 50%) 0 0/100% 4px;pointer-events:none;mix-blend-mode:multiply}
 .screen span{position:absolute;left:10px;top:10px;z-index:2;font-family:var(--f-led);font-size:10px;letter-spacing:.14em;background:rgba(0,0,0,.6);padding:3px 7px}
@@ -303,7 +327,7 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .photo-stack{position:relative;aspect-ratio:4/3;margin-top:18px;border-radius:3px;overflow:hidden;background:var(--ink-2)}
 .photo-stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
 .photo-stack img.on{opacity:1}
-@media (max-width:860px){#pillar{grid-template-columns:1fr;grid-template-rows:1fr auto}.cyl-scene{height:52vh}.photo-stack{display:none}}
+@media (max-width:860px){#pillar{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:center;gap:10px;padding-top:70px;padding-bottom:70px}.cyl-scene{height:36vh}.cyl-base{height:5vh}.pillar-copy h3{font-size:30px}.pillar-copy p{display:none}.pillar-copy .eyebrow{display:none}.pillar-now b{font-size:22px}.photo-stack{display:block;aspect-ratio:16/10;margin-top:10px}}
 
 /* sliding doors */
 #doors{position:relative;height:100vh;overflow:hidden;background:#0d0c0e}
@@ -372,7 +396,7 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .tile .cap b{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,1.8vw,28px);text-transform:uppercase;line-height:1}
 .tile .cap span{font-family:var(--f-led);font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.8);text-align:right}
 .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.7));z-index:1;pointer-events:none}
-.t-1{grid-column:span 4;aspect-ratio:9/14}.t-2{grid-column:span 8;aspect-ratio:16/10.5}.t-3{grid-column:span 4;aspect-ratio:9/14}.t-4{grid-column:span 4;aspect-ratio:9/14}.t-5{grid-column:span 4;aspect-ratio:9/14}.t-6{grid-column:span 6;aspect-ratio:16/9}.t-7{grid-column:span 6;aspect-ratio:16/9}
+.t-1{grid-column:span 4;aspect-ratio:9/14}.t-2{grid-column:span 8;aspect-ratio:16/10.5}.t-3,.t-4,.t-5,.t-8{grid-column:span 3;aspect-ratio:9/15}.t-6{grid-column:span 6;aspect-ratio:16/9}.t-7{grid-column:span 6;aspect-ratio:16/9}
 @media (max-width:760px){.cinema{grid-template-columns:1fr 1fr}.cinema .tile{grid-column:span 1;aspect-ratio:9/14}.cinema .t-2,.cinema .t-6,.cinema .t-7{grid-column:span 2;aspect-ratio:16/10}}
 .reels{display:flex;gap:18px;overflow-x:auto;padding:10px var(--gut) clamp(70px,10vh,130px);scrollbar-width:none;cursor:grab}
 .reels::-webkit-scrollbar{display:none}
@@ -415,6 +439,16 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .tl-strip figure:hover img{scale:1.08}
 @media (max-width:720px){.tl-strip{grid-template-columns:1fr 1fr}.book-copy .now{text-align:left}}
 
+.cat-grid{padding:0 var(--gut) clamp(70px,10vh,130px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.cat{display:grid;gap:10px;color:inherit}
+.cat figure{position:relative;aspect-ratio:3/4;background:#ece6dc;border-radius:4px;overflow:hidden}
+.cat figure img{width:100%;height:100%;object-fit:contain;padding:6%;transition:scale .6s cubic-bezier(.2,.8,.2,1)}
+.cat figure::after{content:"OPEN PDF ↗";position:absolute;left:10px;bottom:10px;font-family:var(--f-led);font-size:11px;letter-spacing:.14em;background:var(--ink);color:var(--paper);padding:6px 10px;border-radius:30px}
+.cat:hover figure img{scale:1.05}
+.cat b{font-family:var(--f-display);font-weight:700;text-transform:uppercase;font-size:24px;line-height:1}
+.cat span{font-size:13px;color:var(--mute)}
+@media (max-width:760px){.cat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cat b{font-size:19px}}
+
 /* ---------- EVENTS ---------- */
 .events{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(20px,3vw,40px);padding:0 var(--gut) clamp(80px,12vh,150px)}
 .table{position:relative;height:min(110vh,980px);border-radius:6px;background:radial-gradient(circle at 50% 40%,#2a2a26,#121211 75%);overflow:hidden;touch-action:none}
@@ -443,6 +477,31 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .copy{margin-top:12px;display:inline-block;font-family:var(--f-led);font-size:11px;letter-spacing:.14em;border:1px solid var(--line);padding:6px 10px;border-radius:30px}
 .copy:hover{border-color:var(--paper)}
 @media (max-width:760px){.contact-row{grid-template-columns:1fr}}
+.end-head{max-width:1200px;margin:0 auto 40px;display:grid;gap:18px}
+.end-title{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(70px,15vw,250px);line-height:.8;display:flex;flex-wrap:wrap;column-gap:.18em}
+.end-title span{display:inline-block}
+.end-title .ai-word{background:linear-gradient(100deg,var(--sodium),var(--led) 45%,#b14fa6 70%,var(--sodium));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:aiflow 6s linear infinite}
+@keyframes aiflow{to{background-position:220% 0}}
+.end-lead{max-width:58ch;color:rgba(239,233,225,.82);font-size:clamp(16px,1.3vw,19px)}
+.disc{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:14px}
+.d-card{position:relative;min-height:400px;border-radius:6px;overflow:hidden;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:var(--ink-2);border:1px solid var(--line);isolation:isolate}
+.d-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.28;transition:opacity .5s, scale .8s;scale:1.05}
+.d-card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,9,11,.2),rgba(10,9,11,.85) 75%)}
+.d-card:hover video{opacity:.7;scale:1}
+.d-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-led);font-size:12px;letter-spacing:.14em}
+.d-top .led{font-size:26px}
+.d-tools{color:var(--mute)}
+.d-card h3{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:clamp(38px,4vw,62px);line-height:.9}
+.d-card p{margin-top:10px;color:rgba(239,233,225,.85);max-width:40ch}
+.d-ai{border:1px solid transparent;background:linear-gradient(var(--ink-2),var(--ink-2)) padding-box,linear-gradient(120deg,var(--sodium),var(--led),#b14fa6,var(--sodium)) border-box;background-size:auto,300% 300%;animation:aiborder 6s linear infinite}
+@keyframes aiborder{to{background-position:0 0,300% 0}}
+.d-ai h3{font-size:clamp(48px,5.4vw,84px)}
+.d-badge{background:var(--sodium);color:var(--ink);padding:4px 9px;border-radius:30px}
+.end-cta{max-width:1200px;margin:60px auto 0;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px}
+.end-cta h2{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:clamp(34px,4.6vw,72px);line-height:.92}
+.end-cta h2 em{font-style:normal;color:var(--sodium)}
+.end-cta .ar{font-size:clamp(20px,2.2vw,30px);color:var(--mute)}
+@media (max-width:860px){.disc{grid-template-columns:1fr}.d-card{min-height:300px}.d-card video{opacity:.45}}
 footer{padding:40px var(--gut);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
 footer svg{width:110px}
 footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
@@ -521,15 +580,15 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
   <video id="hero-video" src="a/hero.mp4" poster="a/p_hero.webp" muted loop playsinline autoplay preload="auto"></video>
   <canvas id="hero-gl" aria-hidden="true"></canvas>
   <div class="hud tl"><span class="rec">REC</span> · RIVA · AI FILM · BEYOND THE MIST</div>
-  <div class="hud tr">GRAPHIC · MOTION · AI<br>4+ YEARS · GCC</div>
+  <div class="hud tr">GRAPHIC DESIGN · MOTION DESIGN · AI DESIGN<br>4+ YEARS · GCC</div>
   <div class="hero-in">
     <h1 class="name" aria-label="Adnan Anwar">
       <span class="row" aria-hidden="true"><span class="c">A</span><span class="c">D</span><span class="c">N</span><span class="c">A</span><span class="c">N</span></span>
       <span class="row" aria-hidden="true"><span class="c">A</span><span class="c">N</span><span class="c">W</span><span class="c">A</span><span class="c">R</span></span>
     </h1>
     <div class="hero-sub">
-      <p>Graphic &amp; Motion Designer in Kuwait. I design the billboards you pass at night, the pillars you walk by at the airport and the posts you stop scrolling for.</p>
-      <div class="ar">مصمم جرافيك وموشن جرافيك</div>
+      <p>Graphic, Motion &amp; AI Designer in Kuwait. I create brand identities, campaigns, motion graphics and AI films for fashion and lifestyle brands across the GCC, on every screen from your phone to the biggest in the city.</p>
+      <div class="ar">مصمم جرافيك وموشن وذكاء اصطناعي</div>
     </div>
   </div>
   <div class="scroll-cue"><span>SCROLL TO DRIVE</span><i></i></div>
@@ -546,7 +605,7 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
   <div>
     <p class="eyebrow">Driver's licence</p>
     <h2 class="split-lines">I can turn your <em>dream image</em> into reality.</h2>
-    <p class="lead">Hello, I'm Adnan. I've managed creative for 32+ international watch and lifestyle brands, and today I design campaigns for Armada Retail Group across the GCC: social, outdoor, POS, in-store branding, motion graphics and AI-assisted video. My creative mind is my strongest weapon.</p>
+    <p class="lead">Hello, I'm Adnan. I've managed creative for 32+ international watch and lifestyle brands, and today I design campaigns for Armada Retail Group across the GCC: brand identity, social, campaigns, print, in-store, motion graphics and AI-generated films and visuals. My creative mind is my strongest weapon, and AI is the newest tool in it.</p>
     <div class="stats">
       <div class="stat"><b class="led" data-count="4" data-suf="+">0</b><span>years in design</span></div>
       <div class="stat"><b class="led" data-count="32" data-suf="+">0</b><span>watch &amp; lifestyle brands</span></div>
@@ -596,6 +655,7 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
   <div id="road">
     <svg class="skyline" viewBox="0 0 1600 300" preserveAspectRatio="none" aria-hidden="true" id="skyline"></svg>
     <div class="road-surface"></div>
+    <div class="swipe-hint" id="swipe-hint">SWIPE TO PASS THE BILLBOARDS <i>→</i></div>
     <div id="road-track">
       <div class="road-title"><p class="eyebrow">Kuwait outdoor megacoms</p><h3>Lights on<br>as you pass</h3><p>Campaigns for Choice, Riva, Riva Kids, Hope and Riva Home, shown next to the photos from the street.</p></div>
     </div>
@@ -608,7 +668,7 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
       <div class="uni-row"><img src="a/uni0.webp" alt="Choice Ramadan unipole in Kuwait" loading="lazy"><img src="a/uni1.webp" alt="Riva Ramadan unipole in Kuwait" loading="lazy"></div>
     </div>
   </div>
-  <div class="sec-head"><h3>Night shift</h3><p>Riva group mupis after dark. Move your cursor to light them up.</p></div>
+  <div class="sec-head"><h3>Night shift</h3><p>Riva group mupis after dark.<span class="hover-only"> Move your cursor to light them up.</span></p></div>
   <div class="night" id="night" data-cursor-light>
     <div class="night-grid" id="night-grid"></div>
     <div class="spot" id="spot" aria-hidden="true"></div>
@@ -681,7 +741,7 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
 <section id="motion" data-exit="EXIT 05 · MOTION, AI & 3D">
   <div class="ch-intro" style="--c:#4b1546">
     <div class="flood-wrap"><div class="flood"></div></div>
-    <div class="ch-title"><span class="sign"><b>05</b>EXIT</span><h2 data-split>MOTION</h2><p>After Effects, Blender and AI video. Product films, reels and 3D.</p></div>
+    <div class="ch-title"><span class="sign"><b>05</b>EXIT</span><h2 data-split>MOTION</h2><p>Motion design, AI films and 3D. After Effects, Blender and generative AI video.</p></div>
   </div>
   <div id="donut">
     <canvas id="donut-c" aria-label="Blender 3D donut animation, controlled by scroll"></canvas>
@@ -706,6 +766,8 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
       <div class="book-base"><div><span class="eyebrow" style="color:#7a706a">Armada Group</span><b>Six<br>catalogues</b><span style="font-size:13px">Art direction, layout and product pages</span></div><div></div></div>
     </div>
   </div>
+  <div class="sec-head"><h3>All catalogues</h3><p>Open any catalogue as the full PDF.</p></div>
+  <div class="cat-grid" id="cat-grid"></div>
 </section>
 
 <!-- 07 EVENTS -->
@@ -727,14 +789,33 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
 
 <!-- CONTACT -->
 <section class="contact" id="contact" data-exit="LAST EXIT · CONTACT">
-  <div class="big-bb">
-    <div class="big-bb-panel"><h2 id="bb-text">Let's put your brand<br>on a billboard</h2><div class="ar">خلّي علامتك التجارية على لوحة إعلانية</div></div>
-    <div class="big-bb-legs"><i></i><i></i></div>
+  <div class="end-head">
+    <p class="eyebrow">What I do</p>
+    <h2 class="end-title"><span>Graphic.</span><span>Motion.</span><span class="ai-word">AI.</span></h2>
+    <p class="end-lead">Billboards are one part of my work. My job is to design brands from the first idea to every screen they live on, and I use AI to take them further than a camera or a budget could.</p>
   </div>
+  <div class="disc">
+    <article class="d-card">
+      <video data-src="a/m_instore.mp4" poster="a/p_m_instore.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <div class="d-top"><span class="led">01</span><span class="d-tools">Ps · Ai</span></div>
+      <div><h3>Graphic design</h3><p>Brand identities and guidelines, campaign key visuals, social media, catalogues, packaging, in-store and outdoor.</p></div>
+    </article>
+    <article class="d-card">
+      <video data-src="a/r_sh.mp4" poster="a/p_r_sh.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <div class="d-top"><span class="led">02</span><span class="d-tools">Ae · Pr · Blender</span></div>
+      <div><h3>Motion design</h3><p>Motion graphics, reels, video editing, LED screen content and 3D animation that holds attention in the first second.</p></div>
+    </article>
+    <article class="d-card d-ai">
+      <video data-src="a/m_drink.mp4" poster="a/p_m_drink.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <div class="d-top"><span class="led">03</span><span class="d-badge">MAIN FOCUS</span></div>
+      <div><h3>AI design</h3><p>AI product and fashion films, AI-generated campaign visuals and AI-assisted workflows. Ideas that would normally need a full studio shoot.</p></div>
+    </article>
+  </div>
+  <div class="end-cta"><h2>Have a brand, a launch or an idea?<br><em>Let's create it.</em></h2><div class="ar">لنصنع شيئاً يلفت الأنظار</div></div>
   <div class="contact-row">
     <div><small>EMAIL</small><a href="mailto:adnankutbuddin21@gmail.com">adnankutbuddin21@gmail.com</a><br><button class="copy" data-copy="adnankutbuddin21@gmail.com">COPY EMAIL</button></div>
     <div><small>PHONE · WHATSAPP</small><a href="tel:+96541188343">+965 4118 8343</a><br><button class="copy" data-copy="+96541188343">COPY NUMBER</button></div>
-    <div><small>BASED IN</small><strong>Kuwait · GCC</strong><p style="color:var(--mute);font-size:14px;margin-top:8px">Graphic design, motion graphics, video editing and AI-assisted production.</p></div>
+    <div><small>BASED IN</small><strong>Kuwait · GCC</strong><p style="color:var(--mute);font-size:14px;margin-top:8px">Graphic design, motion design and AI design for brands across the GCC.</p></div>
   </div>
 </section>
 </main>
@@ -806,9 +887,15 @@ const WATCHES = [
 ];
 const CINEMA = [
   ['t-1','m_drink','Strawvolt','AI product film'],['t-2','m_choice','Choice','AI fashion film'],['t-3','m_eye','Eyeflex','Back to school'],
-  ['t-4','m_bike','Phillips × Waleed','AI bicycle reel'],['t-5','r_mon','Trussardi','Watch artwork'],['t-6','m_instore','Riva','In-store screen film'],['t-7','m_car','Gas station','Blender 3D']
+  ['t-4','m_bike','Phillips × Waleed','AI bicycle reel'],['t-5','r_mon','Trussardi','Watch artwork'],['t-8','r_sofa','Furniture','AI product film'],['t-6','m_instore','Riva','In-store screen film'],['t-7','m_car','Gas station','Blender 3D']
 ];
-const REELS = [['r_sh','SAINT HONORÉ · MOTION'],['r_cj','CHARLES JOURDAN · SHOOT + EDIT'],['r_gl','GUY LAROCHE · GIFTING'],['r_tr','TRUSSARDI · STILLS TO VIDEO'],['r_reb','ATELIER REBUL · STORE OPENING']];
+const REELS = [['r_sh','SAINT HONORÉ · MOTION'],['r_cj','CHARLES JOURDAN · SHOOT + EDIT'],['r_gl','GUY LAROCHE · GIFTING'],['r_tr','TRUSSARDI · STILLS TO VIDEO'],['r_reb','ATELIER REBUL · STORE OPENING'],['r_sofa','FURNITURE · AI PRODUCT REEL']];
+const CATS = [
+  ['choice-ramadan-2025','cat_choice0','Choice','Ramadan collection 2025',17],['riva-ramadan-2025','cat_rivaram0','Riva','Ramadan exclusive collection',16],
+  ['machka-ss25','cat_machka0','Machka','SS 2025 collection',15],['nu-ss25','cat_nu0','NU','SS 2025 collection',19],
+  ['setre-ss25','cat_setre0','Setre','SS 2025 collection',14],['riva-kids-qatar-national-day','cat_qatar0','Riva Kids','Qatar National Day',9],
+  ['riva-kids-gergean','cat_gergean0','Riva Kids','Gergean collection',20],['tonino-lamborghini-watches','cat_tl0','Tonino Lamborghini','Watch catalogue 2024',29]
+];
 const BOOK = [
   ['choice','Choice','Ramadan collection 2025'],['rivaram','Riva','Ramadan exclusive collection'],['machka','Machka','SS 2025 collection'],
   ['nu','NU','SS 2025 collection'],['setre','Setre','SS 2025 collection'],['qatar','Riva Kids','Qatar National Day collection']
@@ -904,6 +991,10 @@ LEAVES.forEach(([f, b, name], i) => {
   l.innerHTML = `<div class="front"><img src="${A('cat_' + f)}.webp" alt="${name} catalogue page" loading="lazy"></div><div class="back"><img src="${A('cat_' + b)}.webp" alt="${name} catalogue page" loading="lazy"></div>`;
   book.appendChild(l);
 });
+
+/* catalogue grid */
+const cg = $('#cat-grid');
+CATS.forEach(([pdf, img, name, sub, pages]) => cg.insertAdjacentHTML('beforeend', `<a class="cat" href="pdf/${pdf}.pdf" target="_blank" rel="noopener" data-cursor="OPEN"><figure><img src="${A(img)}.webp" alt="${name} catalogue cover" loading="lazy"></figure><b>${name}</b><span>${sub} · ${pages} pages</span></a>`));
 
 /* polaroids */
 const table = $('#table');
@@ -1140,7 +1231,15 @@ makeIntro('riva');
 makeIntro('outdoor');
 
 /* ---------------- ROAD ---------------- */
-{
+const mobileRoad = matchMedia('(max-width: 760px), (hover: none)').matches;
+if (mobileRoad) {
+  /* phones: no scroll hijack. A native swipe row; each billboard lights up when it is centred. */
+  const road = $('#road'); road.classList.add('road-m');
+  const hint = $('#swipe-hint');
+  const io = new IntersectionObserver(ens => ens.forEach(en => { if (en.isIntersecting) en.target.classList.add('lit'); }), { root: track, threshold: .6 });
+  $$('.bb', track).forEach(bb => io.observe(bb));
+  track.addEventListener('scroll', () => { if (track.scrollLeft > 30) hint.classList.add('gone'); }, { passive: true });
+} else {
   const road = $('#road'); const dist = () => track.scrollWidth - innerWidth;
   const h = gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: road, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true,
     onUpdate: s => { road.style.setProperty('--dash', (-s.progress * dist() * 1.4) + 'px'); $('#skyline').style.transform = `translateX(${-s.progress * 12}%) scaleX(1.25)`; } } });
@@ -1160,7 +1259,8 @@ gsap.to('[data-parallax]', { scale: 1, ease: 'none', scrollTrigger: { trigger: '
   const night = $('#night'), spot = $('#spot');
   const setSpot = (x, y) => { const r = spot.getBoundingClientRect(); spot.style.setProperty('--mx', (x - r.left) + 'px'); spot.style.setProperty('--my', (y - r.top) + 'px'); };
   if (!touch) night.addEventListener('pointermove', e => setSpot(e.clientX, e.clientY));
-  let auto = 0; const autoMove = () => { auto += .012; const r = spot.getBoundingClientRect();
+  if (touch) { spot.remove(); }
+  let auto = 0; const autoMove = () => { if (touch) return; auto += .012; const r = spot.getBoundingClientRect();
     if (touch || !night.matches(':hover')) { spot.style.setProperty('--mx', (r.width * (.5 + Math.sin(auto) * .4)) + 'px'); spot.style.setProperty('--my', (r.height * (.5 + Math.sin(auto * 1.7) * .35)) + 'px'); }
     requestAnimationFrame(autoMove); };
   ScrollTrigger.create({ trigger: night, start: 'top bottom', once: true, onEnter: autoMove });
@@ -1342,8 +1442,8 @@ gsap.from('.ev-side .phone', { y: 80, opacity: 0, stagger: .12, duration: 1, scr
 
 
 /* ---------------- CONTACT ---------------- */
-gsap.from('.big-bb-panel', { scaleY: 0, transformOrigin: 'bottom', duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '.big-bb', start: 'top 75%' } });
-gsap.fromTo('.big-bb-panel h2', { opacity: 0 }, { opacity: 1, duration: .08, repeat: 6, yoyo: true, delay: .6, onComplete: () => gsap.set('.big-bb-panel h2', { opacity: 1 }), scrollTrigger: { trigger: '.big-bb', start: 'top 75%' } });
+gsap.fromTo('.end-title span', { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1, stagger: .12, ease: 'expo.out', scrollTrigger: { trigger: '.end-head', start: 'top 80%' } });
+gsap.from('.d-card', { y: 70, opacity: 0, duration: 1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.disc', start: 'top 85%' } });
 $$('.copy').forEach(b => b.addEventListener('click', async () => {
   const old = b.textContent;
   try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'COPIED'; } catch (e) { b.textContent = 'SELECT AND COPY ABOVE'; }
