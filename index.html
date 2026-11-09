@@ -69,8 +69,6 @@ h1,h2,h3{text-wrap:balance;font-weight:inherit}
 .ld-count{font-size:clamp(64px,13vw,190px);line-height:.8}
 .ld-meta{font-family:var(--f-led);font-size:12px;letter-spacing:.16em;color:var(--mute);line-height:1.8}
 .ld-bar{position:absolute;left:0;bottom:0;height:3px;background:var(--led);box-shadow:0 0 12px var(--led);width:0;z-index:3}
-#slats{position:absolute;inset:0;display:flex;perspective:1400px;z-index:2;pointer-events:none}
-.slat{flex:1;height:100%;transform:rotateY(-90deg);background-image:url(a/mg05.webp);background-size:100vw 100vh;background-repeat:no-repeat;box-shadow:inset 1px 0 0 rgba(255,255,255,.08), inset -1px 0 0 rgba(0,0,0,.6);backface-visibility:hidden}
 
 /* ---------- CURSOR ---------- */
 .cur,.cur-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:300;border-radius:50%;translate:-50% -50%}
@@ -539,7 +537,6 @@ footer .s{fill:none;stroke:var(--paper);stroke-linecap:round}
 
 <!-- LOADER -->
 <div id="loader" aria-live="polite">
-  <div id="slats" aria-hidden="true"></div>
   <div class="ld-center">
     <svg id="ld-logo" viewBox="0 0 1000 440" role="img" aria-label="ADNN logo">
       <path class="s" stroke-width="32" d="M55 405 L265 40"/>
@@ -1051,9 +1048,6 @@ $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
 
 /* ---------------- LOADER ---------------- */
 document.documentElement.classList.add('locked'); if (lenis) lenis.stop();
-const slats = $('#slats'); const NS = innerWidth < 700 ? 8 : 16;
-for (let i = 0; i < NS; i++) { const s = el('div', 'slat'); s.style.backgroundPosition = `${-i * innerWidth / NS}px 0`; slats.appendChild(s); }
-gsap.set('.slat', { rotateY: -90, autoAlpha: 0 });
 const strokes = $$('#ld-logo .s');
 strokes.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
 gsap.to(strokes, { strokeDashoffset: 0, duration: reduce ? .01 : 1.5, stagger: reduce ? 0 : .1, ease: 'power2.inOut', onComplete: () => $('#ld-logo').classList.add('lit') });
@@ -1090,13 +1084,12 @@ function finishLoader() {
   clearInterval(bTimer); ldBrand.textContent = 'ADNAN ANWAR';
   const tl = gsap.timeline({ onComplete: () => { $('#loader').remove(); document.documentElement.classList.remove('locked'); if (lenis) lenis.start(); ScrollTrigger.refresh(); } });
   if (reduce) { tl.to('#loader', { opacity: 0, duration: .3 }); tl.add(heroIn, 0); return; }
-  tl.to('.ld-center', { scale: 1.15, opacity: 0, filter: 'blur(8px)', duration: .6, ease: 'power2.in' }, .25)
-    .to('.ld-hud, .ld-bar', { opacity: 0, duration: .3 }, .25)
-    .set('.slat', { autoAlpha: 1 }, .55)
-    .to('.slat', { rotateY: 0, duration: .7, ease: 'power3.out', stagger: { each: .035, from: 'start' } }, .55)
-    .add(() => $('#loader').classList.add('clear'))
-    .to('.slat', { rotateY: 90, duration: .75, ease: 'power3.inOut', stagger: { each: .035, from: 'center' } }, '+=.45')
-    .add(heroIn, '-=.55');
+  /* simple finish: the logo flares once, then the whole loader fades into the site */
+  tl.to('.ld-hud, .ld-bar', { opacity: 0, duration: .4 }, .2)
+    .to('#ld-logo', { filter: 'drop-shadow(0 0 14px #fff) drop-shadow(0 0 50px rgba(255,255,255,.8)) drop-shadow(0 0 110px rgba(255,174,69,.6))', duration: .45, ease: 'power2.out' }, .2)
+    .to('.ld-center', { scale: 1.06, opacity: 0, duration: .8, ease: 'power2.inOut' }, .75)
+    .to('#loader', { opacity: 0, duration: .8, ease: 'power2.inOut' }, 1)
+    .add(heroIn, 1.1);
 }
 
 /* ---------------- HERO ---------------- */
